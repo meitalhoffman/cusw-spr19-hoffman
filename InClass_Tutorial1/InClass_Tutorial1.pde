@@ -7,17 +7,29 @@ Originally created by Ira Winder
 */
 //Step 1: allocate memory for your Person
 ArrayList<Person> people;
+ArrayList<Connection> friends;
 
 //Runs once
 void setup(){
   size(1200, 1000); //set canvas size
   people = new ArrayList<Person>();
+  friends = new ArrayList<Connection>();
   
   for( int i =0; i < 10; i++){
     Person p = new Person("Person " + i, str(int(random(1, 5))));
     p.randomLocation();
     people.add(p);
   }
+  
+  //Who are friends?
+  for (Person orgin: people){
+    for(Person dest: people) {
+      if (!orgin.name.equals(dest.name) && orgin.year.equals(dest.year)){
+        friends.add(new Connection(orgin, dest, "friends"));
+      }
+    }
+  }
+  
 }
 
 // runs 60 times/second
@@ -27,6 +39,10 @@ void draw() {
   for (Person p: people) {
     p.update();
     p.drawPerson();
+  }
+  
+  for (Connection c: friends) {
+    c.draw();
   }
 }
   
