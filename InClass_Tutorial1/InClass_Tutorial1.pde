@@ -13,7 +13,7 @@ void setup(){
   size(1200, 1000); //set canvas size
   people = new ArrayList<Person>();
   
-  for( int i =0; i < 100; i++){
+  for( int i =0; i < 10; i++){
     Person p = new Person("Person " + i, str(int(random(1, 5))));
     p.randomLocation();
     people.add(p);
@@ -23,10 +23,23 @@ void setup(){
 // runs 60 times/second
 void draw() {
   background(0); //set background color
-  //fill(255); //define color of the elipse
-  //ellipse(mouseX, mouseY, 300, mouseY/10);
 
   for (Person p: people) {
+    p.update();
     p.drawPerson();
   }
 }
+  
+void mousePressed(){
+   for(Person p: people){
+     if (p.checkSelection()) {
+     break;
+     }
+   }
+ }
+ 
+ void mouseReleased(){
+   for(Person p: people){
+     p.locked = false;
+   }
+ }
