@@ -12,24 +12,7 @@ ArrayList<Connection> friends;
 //Runs once
 void setup(){
   size(1200, 1000); //set canvas size
-  people = new ArrayList<Person>();
-  friends = new ArrayList<Connection>();
-  
-  for( int i =0; i < 10; i++){
-    Person p = new Person("Person " + i, str(int(random(1, 5))));
-    p.randomLocation();
-    people.add(p);
-  }
-  
-  //Who are friends?
-  for (Person orgin: people){
-    for(Person dest: people) {
-      if (!orgin.name.equals(dest.name) && orgin.year.equals(dest.year)){
-        friends.add(new Connection(orgin, dest, "friends"));
-      }
-    }
-  }
-  
+  initialize();
 }
 
 // runs 60 times/second
@@ -58,4 +41,28 @@ void mousePressed(){
    for(Person p: people){
      p.locked = false;
    }
+ }
+ 
+ void keyPressed(){
+   initialize();
+ }
+ 
+ void initialize(){
+   people = new ArrayList<Person>();
+  friends = new ArrayList<Connection>();
+  
+  for( int i =0; i < 25; i++){
+    Person p = new Person("Person " + i, str(int(random(1, 5))));
+    p.randomLocation();
+    people.add(p);
+  }
+  
+  //Who are friends?
+  for (Person orgin: people){
+    for(Person dest: people) {
+      if (!orgin.name.equals(dest.name) && orgin.year.equals(dest.year)){
+        friends.add(new Connection(orgin, dest, "friends"));
+      }
+    }
+  }
  }
