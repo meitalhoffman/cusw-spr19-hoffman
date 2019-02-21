@@ -71,7 +71,6 @@ void draw() {
     if(currentTree.branchingDone){ //if the tree is done branching, make a new one!
       float a = (mouseX / (float) width) * 90f;
       theta   = radians(a);
-      counter+=interval;
       newTree = true;
     }
     popMatrix();                                                        //restore transformation state
