@@ -29,7 +29,7 @@ class Polygon{
     p.beginShape();
     p.fill(park_fill);
     p.strokeWeight(.5);
-    p.stroke(255);
+    p.stroke(park_stroke);
     for(int i = 0; i<coordinates.size(); i++){
         PVector screenLocation = map.getScreenLocation(coordinates.get(i));
         p.vertex(screenLocation.x, screenLocation.y);
