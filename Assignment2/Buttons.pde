@@ -10,13 +10,6 @@ class Button {
   int h = 28;
   int w = 55;
   
-  color fillPub = #114C9C;
-  color fillBar = #4C27A9;
-  color fillClub = #E51EE9;
-  color highlightPub = #062044;
-  color highlightBar = #311872;
-  color highlightClub = #7d107f;
-  
   color fill;
   color highlight;
 
@@ -31,16 +24,33 @@ class Button {
     if(text.equals("pubs")) {
       fill = fillPub;
       highlight = highlightPub;
+      h = 28;
+      w = 55;
       
     }
-        if(text.equals(" bars")) {
+    if(text.equals(" bars")) {
       fill = fillBar;
       highlight = highlightBar;
+      h = 28;
+      w = 55;
     }
-        if(text.equals("clubs")) {
+    if(text.equals("clubs")) {
        fill = fillClub;
        highlight = highlightClub;
+       h = 28;
+        w = 55;
       
+    }else if (text.equals("")){
+      fill = #7575a3;
+      highlight = #b3b3cc;
+      h = 20;
+      w = 20;
+    }
+    else if (text.equals("hide")){
+      fill = #7575a3;
+      highlight = #b3b3cc;
+      h = 20;
+      w = 20;
     }
   }
   
@@ -50,7 +60,15 @@ class Button {
     stroke(0);
     rect(x, y, w, h);
     fill(255);
-    text(text, x+10, y+20);
+    if(text.equals("")){
+      line(362, 35, 378, 28); 
+      line(362, 35, 378, 43); 
+
+    } else if (text.equals("hide")){
+        line(20, 35, 6, 28); 
+        line(20, 35, 6, 42); 
+    } else text(text, x+10, y+20);
+
   }
   
 }
