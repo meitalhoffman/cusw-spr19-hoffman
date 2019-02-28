@@ -11,7 +11,7 @@ MercatorMap map;
 PImage satellite;
 PImage mapBackground;
 
-
+boolean hideInfo;
 
 PImage background;
 
@@ -24,9 +24,13 @@ Boolean showClubs;
 Boolean showBikes;
 Boolean streetsOn;
 
-  Button pubButton;
-  Button barButton;
-  Button clubButton;
+Button pubButton;
+Button barButton;
+Button clubButton;
+
+Button hideInfoButton;
+Button showInfoButton;
+
 
 void setup(){
   size(1000, 650);
@@ -47,10 +51,14 @@ void setup(){
   barButton = new Button(140, 133, " bars");
   clubButton = new Button(250, 133, "clubs");
   
+  hideInfoButton = new Button(360, 25, "");
+  showInfoButton = new Button(2, 25, "hide");
+
+
   buttons.add(pubButton);
   buttons.add(barButton);
   buttons.add(clubButton);
-
+  buttons.add(hideInfoButton);
   
   //set everything to hidden
   showAMPM = false;
@@ -61,6 +69,8 @@ void setup(){
   showClubs = true;
   showBikes = false;
   streetsOn = false;
+  
+  hideInfo = false;
 
   //load and parse data
   loadData();
@@ -120,7 +130,8 @@ void draw(){
     }
   }
   
-  drawInfo();
+  if(hideInfo) hiddenInfo();
+  else drawInfo();
   }
   
    /*
@@ -148,6 +159,7 @@ void draw(){
       if(overButton(button)){
         button.mousedOver = true;
       } else button.mousedOver = false;
+    showInfoButton.mousedOver = overButton(showInfoButton);
     }for(POI pub: pubs){
       pub.showName = overPOI(pub);
     }
@@ -168,6 +180,10 @@ void draw(){
     }
     if(clubButton.mousedOver){
       showClubs = !showClubs;
+    }if (hideInfoButton.mousedOver){
+      hideInfo = true;
+    }if (showInfoButton.mousedOver){
+      hideInfo = false;
     }
   }
   
