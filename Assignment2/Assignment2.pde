@@ -44,7 +44,7 @@ void setup(){
   buttons = new ArrayList<Button>();
   
   pubButton = new Button(40, 133, "pubs");
-  barButton = new Button(140, 133, "bars");
+  barButton = new Button(140, 133, " bars");
   clubButton = new Button(250, 133, "clubs");
   
   buttons.add(pubButton);
@@ -148,6 +148,14 @@ void draw(){
       if(overButton(button)){
         button.mousedOver = true;
       } else button.mousedOver = false;
+    }for(POI pub: pubs){
+      pub.showName = overPOI(pub);
+    }
+    for(POI club: clubs){
+      club.showName =overPOI(club);
+    }
+    for(POI bar: bars){
+      bar.showName = overPOI(bar);
     }
   }
   
@@ -166,4 +174,14 @@ void draw(){
   boolean overButton(Button b){
     if (mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h) return true;
     else return false;
+  }
+  
+  boolean overPOI(POI p){
+    float disX = p.screenLocation.x - mouseX;
+    float disY = p.screenLocation.y - mouseY;
+    if (sqrt(sq(disX) + sq(disY)) < 13/2 ) {
+      return true;
+    } else {
+      return false;
+    }
   }
