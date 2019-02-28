@@ -33,7 +33,7 @@ class Button {
       highlight = highlightPub;
       
     }
-        if(text.equals("bars")) {
+        if(text.equals(" bars")) {
       fill = fillBar;
       highlight = highlightBar;
     }
