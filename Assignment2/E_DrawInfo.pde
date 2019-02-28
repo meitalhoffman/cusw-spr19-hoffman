@@ -4,16 +4,27 @@ color ampm_fill = color(255, 255, 0);
 color park_fill = color(0, 77, 0);
 color bike_fill = color(102 , 255, 102);
 
+color park_stroke = color(0, 53, 0);
+
 color fillPub = #114C9C;
 color fillBar = #4C27A9;
 color fillClub = #E51EE9;
+
+int redValue = 255;
+int blueValue = 0;
+int greenValue = 0;
+
+//color titleColor = color(redValue, greenValue, blueValue);
   
 void drawInfo(){
+  stroke(0);
   fill(0, 120);
   rect(20, 20, 370, 190);
   textSize(18);
+  updateTitle();
+  fill(color(redValue, greenValue, blueValue));
+  text("A Night Out in Tel Aviv", 100, 40);
   fill(255);
-  text("A Night Out in Tel Aviv", 25, 40);
   textSize(16);
   text("Step 1: Find an AM:PM (press a)", 25, 65);
   //fill(bar_fill);
@@ -28,4 +39,36 @@ void drawInfo(){
   for(Button b: buttons){
     b.draw();
   }
+}
+ 
+  void updateTitle(){
+   if( greenValue<255 && redValue==255 && blueValue==0){
+     greenValue++;
+    }
+    
+    //go from yellow to pure green
+    if(greenValue == 255 && redValue>0){
+      //redToGreen = false;
+     redValue--; 
+    }
+    
+    //go from green to cyan/bluish-green
+    if(redValue==0 && greenValue==255 && blueValue<255){
+    
+      blueValue++;
+    }
+    
+    //go from bluish-green to blue
+    if(blueValue==255 && greenValue>0){
+     greenValue--; 
+    }
+   // go from blue to violet
+    if(redValue < 255 && greenValue==0 && blueValue==255){
+      redValue++;
+      
+      }
+        //go from violet to red
+      if(redValue == 255 && blueValue>0){
+        blueValue--;
+    }
 }
