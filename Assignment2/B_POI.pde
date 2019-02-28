@@ -15,6 +15,8 @@ PImage AMPMpic;
 class POI{
   //What is the coordinate of the POI in lat, lon
   PVector coord;
+  //get screen location of poi
+  PVector screenLocation;
 
   //Lat, lon values
   float lat;
@@ -28,15 +30,18 @@ class POI{
 
   //String to hold the type -- defaults to empty if there is none
   String type;
+  
+  Boolean showName;
 
   POI(float _lat, float _lon) {
     lat = _lat;
     lon = _lon;
     coord = new PVector(lat, lon);
+    showName = false;
+    screenLocation = map.getScreenLocation(coord);
   }
 
   void draw() {
-    PVector screenLocation = map.getScreenLocation(coord);
     if(id.equals(AMPM))
     {
       image(AMPMpic, screenLocation.x-17, screenLocation.y - 8, 34, 16);
@@ -52,9 +57,14 @@ class POI{
     }if(id.equals(bar)){
         fill(fillBar);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
+    }if(showName && !name.equals("")){
+      textSize(12);
+      fill(255);
+      text(name, screenLocation.x + 13, screenLocation.y+13);
     }
   }
   
+  //function taken from Amy Vogel
   void drawBike(int xLoc, int yLoc) {
      // draw a bike
      float u = 2; // make a simple unit to use for drawing
