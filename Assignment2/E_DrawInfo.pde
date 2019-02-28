@@ -9,6 +9,9 @@ color park_stroke = color(0, 53, 0);
 color fillPub = #114C9C;
 color fillBar = #4C27A9;
 color fillClub = #E51EE9;
+color highlightPub = #062044;
+color highlightBar = #311872;
+color highlightClub = #7d107f;
 
 int redValue = 255;
 int blueValue = 0;
@@ -19,7 +22,7 @@ int greenValue = 0;
 void drawInfo(){
   stroke(0);
   fill(0, 120);
-  rect(20, 20, 370, 190);
+  rect(20, 20, 370, 208);
   textSize(18);
   updateTitle();
   fill(color(redValue, greenValue, blueValue));
@@ -34,7 +37,8 @@ void drawInfo(){
   text("Step 4: Find somewhere to go out (press o)", 25, 125);
   text("Step 5: Use a bike share to go home (press b)", 25, 180);
   textSize(14);
-  text("Hint: Press s to toggle the background", 25, 205);
+  text("Hints: Press s to toggle the background", 25, 205);
+  text("Mouse over a location to see its name", 67, 223);
   text("Made by: Meital Hoffman", 800, 625);
   for(Button b: buttons){
     b.draw();
@@ -71,4 +75,14 @@ void drawInfo(){
       if(redValue == 255 && blueValue>0){
         blueValue--;
     }
+}
+
+void hiddenInfo(){
+  stroke(0);
+  fill(0, 120);
+  rect(0, 20, 25, 208);
+  showInfoButton.draw();
+  fill(255);
+  textSize(14);
+  text("Made by: Meital Hoffman", 800, 625);
 }
