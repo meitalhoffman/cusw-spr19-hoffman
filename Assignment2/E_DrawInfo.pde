@@ -19,7 +19,7 @@ void drawInfo(){
   //fill(bar_fill);
   text("Step 2: Buy drinks and snacks", 25, 85);
   //fill(park_fill);
-  text("Step 3: Eat them at a park (press p)", 25, 105);
+  text("Step 3: Consume them at a park (press p)", 25, 105);
   text("Step 4: Find somewhere to go out (press o)", 25, 125);
   text("Step 5: Use a bike share to go home (press b)", 25, 180);
   textSize(14);
