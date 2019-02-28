@@ -49,13 +49,16 @@ class POI{
       drawBike(int(screenLocation.x), int(screenLocation.y));
     }
      if(id.equals(club)){
-        fill(fillClub);
+        if(showName) fill(highlightClub);
+        else fill(fillClub);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
     } if(id.equals(pub)){
-        fill(fillPub);
+        if(showName) fill(highlightPub);
+        else fill(fillPub);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
     }if(id.equals(bar)){
-        fill(fillBar);
+        if(showName) fill(highlightBar);
+        else fill(fillBar);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
     }if(showName && !name.equals("")){
       textSize(12);
