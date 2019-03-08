@@ -14,6 +14,7 @@ void setup(){
   loadData();
   parseData();
   raster = new Raster(20, 600, 600);
+  //println(correlationTest());
 }
 
 void draw(){
@@ -38,7 +39,7 @@ void drawInfo(){
   text("Colored according to", 405, 65);
   text("percent of mixed", 406, 80);
   text("race population", 406, 95);
-  text("white --> black", 405, 115);
-  text("high -->   low", 405, 130);
-
+  text("white           --> black", 405, 115);
+  textSize(15);
+  text(str(max) + "% --> " + str(min) + "%", 405, 130);
 }
