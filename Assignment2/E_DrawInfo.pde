@@ -1,5 +1,4 @@
 //fill color
-//color bar_fill = color(255, 229, 10);
 color ampm_fill = color(255, 255, 0);
 color park_fill = color(0, 77, 0);
 color bike_fill = color(102 , 255, 102);
@@ -17,8 +16,9 @@ int redValue = 255;
 int blueValue = 0;
 int greenValue = 0;
 
-//color titleColor = color(redValue, greenValue, blueValue);
-  
+/*
+function that draws the information box
+*/
 void drawInfo(){
   stroke(0);
   fill(0, 120);
@@ -30,9 +30,7 @@ void drawInfo(){
   fill(255);
   textSize(16);
   text("Step 1: Find an AM:PM (press a)", 25, 65);
-  //fill(bar_fill);
   text("Step 2: Buy drinks and snacks", 25, 85);
-  //fill(park_fill);
   text("Step 3: Consume them at a park (press p)", 25, 105);
   text("Step 4: Find somewhere to go out (press o)", 25, 125);
   text("Step 5: Use a bike share to go home (press b)", 25, 180);
@@ -45,6 +43,9 @@ void drawInfo(){
   }
 }
  
+ /*
+ function that makes the title rainbow
+ */
   void updateTitle(){
    if( greenValue<255 && redValue==255 && blueValue==0){
      greenValue++;
@@ -52,7 +53,6 @@ void drawInfo(){
     
     //go from yellow to pure green
     if(greenValue == 255 && redValue>0){
-      //redToGreen = false;
      redValue--; 
     }
     
