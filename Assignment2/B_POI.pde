@@ -1,6 +1,6 @@
 /*
 class that holds all of our points of interest
-this includes the AM:PMs and the nightclubs
+this includes the AM:PMs and the nightclubs and bikeshare locations
 */
 
 ArrayList<POI> ampms;
@@ -8,7 +8,6 @@ ArrayList<POI> clubs;
 ArrayList<POI> bars;
 ArrayList<POI> pubs;
 ArrayList<POI> bikes;
-
 
 PImage AMPMpic;
 
@@ -45,25 +44,42 @@ class POI{
     if(id.equals(AMPM))
     {
       image(AMPMpic, screenLocation.x-17, screenLocation.y - 8, 34, 16);
-    } if (id.equals("bike")){
+    } 
+    if (id.equals("bike")){
       drawBike(int(screenLocation.x), int(screenLocation.y));
     }
-     if(id.equals(club)){
+    if(id.equals(club)){
         if(showName) fill(highlightClub);
         else fill(fillClub);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
-    } if(id.equals(pub)){
+    }
+    if(id.equals(pub)){
         if(showName) fill(highlightPub);
         else fill(fillPub);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
-    }if(id.equals(bar)){
+    }
+    if(id.equals(bar)){
         if(showName) fill(highlightBar);
         else fill(fillBar);
         ellipse(screenLocation.x, screenLocation.y, 13, 13);
-    }if(showName && !name.equals("")){
-      textSize(12);
-      fill(255);
-      text(name, screenLocation.x + 13, screenLocation.y+13);
+    }
+  }
+  
+  /*
+  function that draws the name of the location according to where the dot is on the screen
+  */
+  void drawName(){
+    textSize(12);
+    fill(255);
+    if(showName && !name.equals("")){
+      float textWidth = textWidth(name);
+      if(screenLocation.x + textWidth > width) text(name, screenLocation.x - textWidth, screenLocation.y+13);
+      else text(name, screenLocation.x + 13, screenLocation.y+13);
+    } else if (showName && name.equals("")){
+      String none = "name unavailable";
+      float textWidth = textWidth(none);
+      if(screenLocation.x + textWidth > width) text(none, screenLocation.x - textWidth, screenLocation.y+13);
+      else text(none, screenLocation.x + 13, screenLocation.y+13);
     }
   }
   
