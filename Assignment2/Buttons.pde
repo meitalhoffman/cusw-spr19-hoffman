@@ -1,10 +1,9 @@
 /*
-class for picking which kinds of places to go out
+class for buttons on the screen
 */
 ArrayList<Button> buttons;
 
 class Button {
-  
   int x;
   int y;
   int h = 28;
@@ -54,6 +53,9 @@ class Button {
     }
   }
   
+  /*
+  function for drawing the buttons
+  */
   void draw() {
     if (mousedOver) fill(highlight);
     else fill(fill, 150);
