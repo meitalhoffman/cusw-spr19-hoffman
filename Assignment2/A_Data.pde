@@ -6,6 +6,7 @@ Class to load and process GeoJSON data from Open Street Maps
 JSONObject TelAviv;
 JSONArray features;
 
+//hardcoded bike share locations
 float bikeInfo[][] = {{32.0627738, 34.7797898},
  {32.0652262, 34.7765779},
  {32.0597378, 34.7616984},
@@ -42,8 +43,8 @@ void loadData(){
  
  mapBackground = loadImage("data/background.JPG");
  mapBackground.resize(width, height);
-
  
+ //load the AMPM logo
  AMPMpic = loadImage("data/ampm.JPG");
  //get the features
  TelAviv = loadJSONObject("data/osmData.json");
@@ -61,7 +62,6 @@ void parseData(){
   //Parks -> leisure = ["garden", park"]
   //iterating through the OSM data
   for (int i = 0; i < features.size(); i++){
-    //println("looking through object: " + str(i));
     String type = features.getJSONObject(i).getJSONObject("geometry").getString("type");
     JSONObject geometry = features.getJSONObject(i).getJSONObject("geometry");
     JSONObject properties =  features.getJSONObject(i).getJSONObject("properties");
@@ -70,6 +70,7 @@ void parseData(){
     String leisure = properties.getJSONObject("tags").getString("leisure");
     String englishName = properties.getJSONObject("tags").getString("name:en");
     String name = "";
+    //set the name of a location to the English name, if available
     if(englishName == null) name = properties.getJSONObject("tags").getString("name");
     else name = englishName;
     
@@ -80,16 +81,18 @@ void parseData(){
     //check if its an AMPM
     if(name.equals(AMPM)){
       makePointofInterest(geometry, name, "");
-    } else if (amenity.equals(bar) || amenity.equals(club) || amenity.equals(nightclub) || amenity.equals(pub)){
+    } //otherwise, check if it's a place to go out
+    else if (amenity.equals(bar) || amenity.equals(club) || amenity.equals(nightclub) || amenity.equals(pub)){
       makePointofInterest(geometry, amenity, name);
-    } else if (leisure.equals(park) || leisure.equals(garden)){
+    } //otherwise check if its a park or a garden
+    else if (leisure.equals(park) || leisure.equals(garden)){
         //only include polygons
         if(type.equals("Polygon")){
           makeParkPolygon(geometry, name);
       }
   }
   }
-  //Tel Ofen Bike share locations iterate through and see if it's in our bounding box
+  //iterate through Tel Ofen Bike share locations and make the bike
     for (int i = 0; i < bikeInfo.length; i++){
       float lat = bikeInfo[i][0];
       float lon = bikeInfo[i][1];
@@ -97,6 +100,9 @@ void parseData(){
   }
 }
 
+/*
+function that makes point of interests and adds them to the appropriate lists
+*/
 void makePointofInterest(JSONObject geometry, String _id, String name){
       float lat = geometry.getJSONArray("coordinates").getFloat(1);
       float lon = geometry.getJSONArray("coordinates").getFloat(0);
