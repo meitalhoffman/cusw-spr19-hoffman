@@ -1,9 +1,9 @@
 /*
 class that holds all of our points of interest
-this includes transit locations
+this includes nearby transit locations
 */
 
-
+ArrayList<POI> transit;
 
 class POI{
   //What is the coordinate of the POI in lat, lon
