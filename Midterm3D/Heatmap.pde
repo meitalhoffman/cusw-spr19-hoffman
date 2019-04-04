@@ -1,0 +1,3 @@
+/*
+class to hold the heatmap for footfall of agents across grid
+*/
