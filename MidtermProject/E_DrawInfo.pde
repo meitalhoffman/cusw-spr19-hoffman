@@ -56,6 +56,7 @@ void drawInstructionsSmall(){
   text(text1, 180, 225, 700, height);
   text(text2, 180, 310, 700, height);
   text(text3, 180, 360, 700, height);
+  textAlign(LEFT);
 }
 
 void drawInstructions(){
