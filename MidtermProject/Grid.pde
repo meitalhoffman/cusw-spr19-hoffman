@@ -43,8 +43,8 @@ class Grid{
   boolean dayOver = false;
   String finaltime;
   
-      int maxCount = 0;
-    int minCount = 0;
+  int maxCount = 0;
+  int minCount = 0;
   
   
   //initialize a grid of blocks
@@ -165,7 +165,7 @@ class Grid{
     textSize(18);
     fill(textColor);
     String time = getTime(timer-startTime);
-    if(dayOver) time = finaltime;
+    if(dayOver && agents.size() == 0) time = finaltime;
     text("Time: "+time, 0, 0); 
     text("People: " + str(agents.size()), 0, 24);
     text("Max Footfall: " + str(maxCount), 0, 48);
@@ -173,7 +173,7 @@ class Grid{
   }
   
   String getTime(int timeMillis){
-      timeMillis = timeMillis *5;
+      timeMillis = timeMillis *10;
       boolean AM = true;
       int startHour = 9;
       int minutes = floor(timeMillis/1000.0);
@@ -194,9 +194,11 @@ class Grid{
       if(AM) time = " AM";
       else time = " PM";
       String finalString = hoursString + ":" + minuteString + time;
-      if(finalHour >= 7 && time.equals(" PM")){
+      if(finalHour >= 7 && finalHour!= 12 && !AM){
+        println("final hour is: " + str(finalHour));
+        println("the day is over");
         dayOver = true;
-      } if(dayOver && agents.size() == 0) finaltime = finalString;
+      } if(dayOver && finaltime == null && agents.size() == 0) finaltime = finalString;
     return finalString;
   }
   
@@ -341,12 +343,12 @@ class Grid{
   }
   
   void addAgentsRandom(int value){
+    println("adding agents");
     if(stalls.size() > 0){
       for(int i = 0; i < value; i++){
         int yloc = rand.nextInt(scaledH*smallerSide);
         agent newAgent = new agent(new PVector(0, yloc), this);
         agents.add(newAgent);
-        println("added agent!");
       }
     }
   }
