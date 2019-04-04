@@ -13,10 +13,22 @@ float lon_right = -71.07580;
 
 
 void loadData(){
-  //load and resize background
+  //load and resize background choices
+ satellite = loadImage("data/satellite.JPG");
+ satellite.resize(width, height);
  
- //load the AMPM logo
-
+ gradient = loadImage("data/gradient.jpg");
+ gradient.resize(width, height);
+ 
+ mapBackground = loadImage("data/background1.JPG");
+ mapBackground.resize(width, height);
+ 
+ zoomedOut = loadImage("data/zoomedOut.JPG");
+ zoomedOut.resize(width, height);
+ 
+ eraser = loadImage("data/eraser.jpg");
+ eraser.resize(40, 40);
+ 
  //get the features
  baseMap = loadJSONObject("data/vacantlotInfo.json");
  features = baseMap.getJSONArray("features");
