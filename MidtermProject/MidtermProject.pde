@@ -95,7 +95,7 @@ void draw(){
       rect(0, 0, width, height);
       //add agents if they're all gone or every three seconds
       if(grid.agents.size() == 0 && !grid.dayOver) grid.addAgentsRandom(10);
-      else if(timer%5000 < 50 && !grid.dayOver) grid.addAgentsRandom(5);
+      if(timer%5000 < 50 && !grid.dayOver) grid.addAgentsRandom(5);
       if(timer%intervalCount < 100) grid.updateStepCount();
       if(timer%intervalColor < 100) grid.updateColors();
       
@@ -129,8 +129,6 @@ void draw(){
     }
     if(infoIcon.mousedOver) drawInstructions = true;
     else drawInstructions = false;
-    //check the showed info button seperately, since it is not in the buttons list
-    //showInfoButton.mousedOver = overButton(showInfoButton);
     //check if the mouse is in the grid area, and if so, update the closest selected blocks
     overGrid = overGrid(x, y, grid);
     if(overGrid){
