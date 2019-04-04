@@ -173,7 +173,7 @@ class Grid{
   }
   
   String getTime(int timeMillis){
-      timeMillis = timeMillis *10;
+      timeMillis = timeMillis *5;
       boolean AM = true;
       int startHour = 9;
       int minutes = floor(timeMillis/1000.0);
