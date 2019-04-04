@@ -25,7 +25,7 @@ class agent {
     toVisit = new ArrayList<Stall>(grid.stalls);
     //start by going to a random stall in the list
     if(toVisit.size() > 0){
-      println("picking a random stall to visit");
+      //println("picking a random stall to visit");
       int index = int(random(toVisit.size()));
       Stall nextStall = toVisit.get(index);
       target = grid.getRandomEdgePoint(nextStall);
@@ -125,7 +125,6 @@ class agent {
     }
     target = min;
     delta = getXYDelta(location, min, v);
-    println("Leaving the grid");
   }
   
 }
